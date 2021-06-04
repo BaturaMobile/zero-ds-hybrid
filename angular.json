@@ -3,5 +3,37 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "@zero-ds/hybrid": {
+      "projectType": "library",
+      "root": "projects/zero-ds/hybrid",
+      "sourceRoot": "projects/zero-ds/hybrid/src",
+      "prefix": "zero",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/zero-ds/hybrid/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/zero-ds/hybrid/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/zero-ds/hybrid/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/zero-ds/hybrid/src/test.ts",
+            "tsConfig": "projects/zero-ds/hybrid/tsconfig.spec.json",
+            "karmaConfig": "projects/zero-ds/hybrid/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "@zero-ds/hybrid"
 }

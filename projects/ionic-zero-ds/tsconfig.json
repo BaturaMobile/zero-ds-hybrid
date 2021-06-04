@@ -2,30 +2,33 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "paths": {
-      "@zero-ds/hybrid": [
-        "dist/zero-ds/hybrid/zero-ds-hybrid",
-        "dist/zero-ds/hybrid"
-      ]
-    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2017",
+    "target": "es2015",
     "module": "es2020",
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@zero-ds/hybrid": [
+        "../../dist/zero-ds/hybrid/zero-ds-hybrid",
+        "../../dist/zero-ds/hybrid"
+      ],
+      "@zero-ds/hybrid/*": [
+        "../../dist/zero-ds/hybrid/zero-ds-hybrid/*",
+        "../../dist/zero-ds/hybrid/*"
+      ],
+      "@angular/*": [
+        "./node_modules/@angular/*"
+      ],
+    },
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

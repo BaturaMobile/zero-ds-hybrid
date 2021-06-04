@@ -1,0 +1,13 @@
+{
+  "defaultProject": "ionic-zero-ds",
+  "projects": {
+    "ionic-zero-ds": {
+      "name": "ionic-zero-ds",
+      "integrations": {
+        "capacitor": {}
+      },
+      "type": "angular",
+      "root": "projects/ionic-zero-ds"
+    }
+  }
+}
