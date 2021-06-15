@@ -8,9 +8,9 @@ describe('ZeroAvatarGroupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ZeroAvatarGroupComponent ]
+      declarations: [ZeroAvatarGroupComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
