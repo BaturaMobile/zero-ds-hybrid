@@ -8,6 +8,11 @@
       "root": "projects/zero-ds/hybrid",
       "sourceRoot": "projects/zero-ds/hybrid/src",
       "prefix": "zero",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",

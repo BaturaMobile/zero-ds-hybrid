@@ -1,20 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'zero-hybrid',
   template: `
-    <p>
-      zero-hybrid works!!
-    </p>
+    <p>ZeroHybrid Works!</p>
   `,
-  styles: [
-  ]
+  styles: []
 })
 export class ZeroHybridComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

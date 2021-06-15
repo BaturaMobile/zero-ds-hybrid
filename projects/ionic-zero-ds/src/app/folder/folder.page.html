@@ -16,5 +16,18 @@
 
   <div id="container">
     <zero-hybrid></zero-hybrid>
+    <zero-avatar-group class="ion-justify-content-center" [avatarList]="avatarList" [max]="avatarMax" [loading]="false"
+      [diametro]="diametroAvatar" (avatarClick)="avatarClickFn($event)">
+    </zero-avatar-group>
+
+    <br><br><br>
+    <ion-button (click)="mostrarMenos()" fill="clear" shape="round">
+      <ion-icon slot="icon-only" name="remove"></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="mostrarMas()" fill="clear" shape="round">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
   </div>
+
 </ion-content>

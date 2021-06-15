@@ -28,6 +28,9 @@
       "@angular/*": [
         "./node_modules/@angular/*"
       ],
+      "@ionic/*": [
+        "./node_modules/@ionic/*"
+      ],
     },
   },
   "angularCompilerOptions": {

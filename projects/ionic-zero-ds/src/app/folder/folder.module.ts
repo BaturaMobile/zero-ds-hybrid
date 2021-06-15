@@ -8,7 +8,8 @@ import { FolderPageRoutingModule } from './folder-routing.module';
 
 import { FolderPage } from './folder.page';
 
-import { ZeroHybridComponent, ZeroHybridModule } from "@zero-ds/hybrid";
+import { ZeroHybridModule } from "@zero-ds/hybrid";
+import { ZeroAvatarGroupModule } from "@zero-ds/hybrid/src/lib/zero-avatar-group";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ZeroHybridComponent, ZeroHybridModule } from "@zero-ds/hybrid";
     IonicModule,
     FolderPageRoutingModule,
     ZeroHybridModule,
+    ZeroAvatarGroupModule,
   ],
   declarations: [FolderPage]
 })

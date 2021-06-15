@@ -1,0 +1,10 @@
+{
+  "name": "zero-avatar-group",
+  "version": "1.0.0",
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public-api.ts",
+      "cssUrl": "inline"
+    }
+  }
+}

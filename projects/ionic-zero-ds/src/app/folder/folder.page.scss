@@ -26,3 +26,16 @@ ion-menu-button {
 #container a {
   text-decoration: none;
 }
+
+// Estilos sobrescritor de zero-avatar-group
+::ng-deep zero-avatar-group {
+  .zero-avatar {
+    // Dimensiones de cada avatar
+    /* width: 60px !important;
+    height: 60px !important; */
+    ion-label {
+      // Tamaño de la letra de indicador de avatares restantes
+      font-size: 20px;
+    }
+  }
+}

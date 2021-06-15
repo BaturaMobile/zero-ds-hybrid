@@ -3,6 +3,11 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
+      // used during the development when referencing sub-entries from each other
+      "@zero-ds/hybrid/*": [
+        "dist/zero-ds/hybrid/*"
+      ],
+      // used during the build to produce library artifacts that can be consumed by the applications
       "@zero-ds/hybrid": [
         "dist/zero-ds/hybrid/zero-ds-hybrid",
         "dist/zero-ds/hybrid"

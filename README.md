@@ -1,12 +1,38 @@
-# Hybrid ZeroDS
-Zero Design System by Batura Mobile for Ionic/Angular hybrid apps.
+# Hybrid ZeroDS 
+[Repositorio en Bitbucket](https://bitbucket.org/baturamobile/zero-ds-hybrid/src/master/)
 
-* Bitbucket repo: https://bitbucket.org/baturamobile/zero-ds-hybrid/src/master/
+**Zero Design System** *by Batura Mobile* for Ionic/Angular hybrid apps.
 
-## Crear un proyecto Multi-App (workspace)
+Librería Zero DS para proyectos Angular o Ionic/Angular.
+
+*Para la completa integración en el proyecto (paleta de color, tipografía, etc.) es recomendanle usarla en proyections Ionic > Ionic > v5.0.0.
+Esto se puede comprobar ejecutando `ionic info` dentro del proyecto Ionic y refiriendose a la versión de **Ionic Framework**
+```bash
+Ionic:
+
+   Ionic CLI                     : 6.16.3 (/Users/aingeru/.nvm/versions/node/v14.15.1/lib/node_modules/@ionic/cli)  // Versión de Ionic CLI
+   Ionic Framework               : @ionic/angular 5.6.8                                                             // Versión de Ionic
+   @angular-devkit/build-angular : 12.0.3
+   @angular-devkit/schematics    : 12.0.3
+   @angular/cli                  : 12.0.3                                                                           // Versión de Angular
+   @ionic/angular-toolkit        : 4.0.0
+```
+
+## Índice
+
+  * [Crear un workspace Multi-App](#crear-un-workspace-multi-app)
+  * [Crear app híbrida Ionic (ionic app)](#crear-app-h-brida-ionic--ionic-app-)
+    + [Crear nuevo componente](#crear-nuevo-componente)
+  * [Crear librería Angular (ng lib)](#crear-librer-a-angular--ng-lib-)
+  * [Crear web-app Angular (ng app)](#crear-web-app-angular--ng-app-)
+  * [Probar la librería en una app](#probar-la-librer-a-en-una-app)
+    + [Importar la librería en la app](#importar-la-librer-a-en-la-app)
+  * [Bibliografía](#bibliograf-a)
+
+## Crear un workspace Multi-App
 https://ionicframework.com/docs/cli/configuration#multi-app-projects
 
-0. Crear workspace para la libería con `ng new zero-ds --createApplication=false`
+0. Crear workspace para la libería con `ng new zero-ds --createApplication=false (--prefix=zero-ds)`
 1. Crear manualmente la carpeta `/projects` en la raíz para albergar todas las apps y librerías 
     
     **Los nuevos proyectos angular crean la carpeta automáticamente, pero los de Ionic no*
@@ -18,6 +44,8 @@ https://ionicframework.com/docs/cli/configuration#multi-app-projects
    ```
 
 ## Crear app híbrida Ionic (ionic app)
+
+Crear proyecto acoplado a la librería para poder usarlo como demo e importar la librería en local para la fase de desarrollo y pruebas.
 
 1. (Desde el directorio /projects) **Crear app ionic** con `ionic start` y rellenar los datos que pide el cli (project-name, ionic template, capacitor integration, ionic account, ...)
 2. Para lanzar esa u otra app, añadir la opción `--project` trás el comando (e.g. `ionic serve --project=ionic-zero-ds`). 
@@ -40,22 +68,45 @@ También se puede especificar un proyecto por defecto en el archivo **ionic.conf
 **!TROUBLESHOOTING** 
 
 Para solventar el `[ERROR] ng has unexpectedly closed (exit code 127).` al lanzar la app con `ionic serve (--project=ionic-zero-ds)`:
+
   4.1.1 Ir al archivo **angular.json** de ese proyecto (projects/ionic-zero-ds/angular.json) y las referencias de "app" por el nombre del proyecto en cada app/lib:
   * "defaultProject": "app" --> "defaultProject": "ionic-zero-ds"
   * (bajo "projects") "app" --> "ionic-zero-ds"
   * todas las ocurrencias (12) de "app:" --> "ionic-zero-ds:"
 
-### Crear nuevo componente
+### TODO: Crear nuevo componente
 
-1. (Dentro de la librería -> `cd projects/zero-ds/hybrid`)
+Crear nuevo componente modular, que se pueda importar de manera independiente mediante su propia ruta de importación (sub-entry).
+Para este proceso, se ha instalado el paquete [ng-samurai](https://github.com/kreuzerk/ng-samurai) que crea cada módulo con su propia entrada o acceso secundario (al global) de la misma manera para todos, ya que cada módulo de la librería debería tener la propia
 
+1. (Dentro de la librería -> `cd projects/zero-ds/hybrid`) Ejecutar `ng g ng-samurai:generate-subentry <path-del-modulo/nombre-modulo> --gm true --gc true`
+   1. Flasg: `--gm` para indicar si debe crear un módulo. `--gc` para indicar si debe crear un componente.
 
+  ```bash
+    ng g ng-samurai:generate-subentry lib/zero-component --gm true --gc true
+  ```
+   
+   Además de la generación opcional de los anteriores, crear una carpeta con los archivos:
+   * **index.ts** sirve como enlace entre el módulo y el índice global de la librería.
+   * **public-api.ts** archivo en el que se listan los módulos, componentes, clases, interfaces, etc. que se podrán importar desde fuera.
+   * **package.json** archivo de configuración propia del módulo (entre otras cosas, sirve para versionar individualmente el componente del módulo).
+2. En el arhivo global **src/public-api.ts** se crea una referencia a la entrada del módulo:
+   ```ts
+    /** Zero Avatar Group */
+    export * from './lib/zero-avatar-group';
+   ```
+  De esta manera, cuando se importe algún componente de este módulo desde fuera, quedarás así:
+  ```ts
+    /** Importar Zero Avatar Group */
+    import { ZeroAvatarGroupModule } from "@zero-ds/hybrid/src/lib/zero-avatar-group";
+   ```
 
 ## Crear librería Angular (ng lib)
 
 1. (Desde el directorio /projects) **Crear librería angular** con `ng generate library --prefix=zero` (la opción de `--prefix=zero` es para denominar los componentes creados en la librería con ese prefijo, sustituyendo el prefijo "app" que trae por defecto).
 2. Compilar la librería con `ng build @zero-ds/hybrid` que la generará en la carpeta **/dist** en la raíz del workspace.
-   1. En desarrollo, para auto-compilar los cambios -> añadir el flag `-watch`. Es muy útil si estás utilizando paralelamente la librería en una app, ya que la app detecta los cambios y actualiza la librería con la nueva compilación.
+   * En desarrollo, para auto-compilar los cambios -> añadir el flag `-watch`. Es muy útil si estás utilizando paralelamente la librería en una app, ya que la app detecta los cambios y actualiza la librería con la nueva compilación.
+3. Añadir Ionic (u otras dependencias) en la librería -> entrando dentro de la carpeta de la lib en **projects/zero-ds/hybrid**, instalar con `npm i @ionic/angular` y asegurarse que en el **package.json** de la librería, se ha añadido en el objeto de `peerDependencies`, que son las que se instalarán en la app que importe la librería.
 
 ## Crear web-app Angular (ng app)
 
@@ -110,9 +161,12 @@ Como en las opciones anteriores, después de generar la versión que se quiere p
         "@angular/*": [
           "./node_modules/@angular/*"
         ],
+        "@ionic/*": [
+          "./node_modules/@ionic/*"
+        ],
       },
       ```
-      Del mismo modo, aprovechamos para añadir el path del paquete de angular al que se tiene que referenciar (el propio de la app, no del workspace).
+      Del mismo modo, aprovechamos para añadir el path del paquete de Angular y de Ionic al que se tiene que referenciar (el propio de la app, no del workspace).
 
 2. Probar a mostrar un componente del módulo de la librería importado en la vista:
 ```html
