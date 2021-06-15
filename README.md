@@ -5,7 +5,7 @@
 
 Librería Zero DS para proyectos Angular o Ionic/Angular.
 
-*Para la completa integración en el proyecto (paleta de color, tipografía, etc.) es recomendanle usarla en proyections Ionic > Ionic > v5.0.0.
+*Para la completa integración en el proyecto (paleta de color, tipografía, etc.) es recomendanle usarla en proyectos Ionic > v5.0.0.
 Esto se puede comprobar ejecutando `ionic info` dentro del proyecto Ionic y refiriendose a la versión de **Ionic Framework**
 ```bash
 Ionic:
@@ -91,10 +91,10 @@ Para este proceso, se ha instalado el paquete [ng-samurai](https://github.com/kr
    * **public-api.ts** archivo en el que se listan los módulos, componentes, clases, interfaces, etc. que se podrán importar desde fuera.
    * **package.json** archivo de configuración propia del módulo (entre otras cosas, sirve para versionar individualmente el componente del módulo).
 2. En el arhivo global **src/public-api.ts** se crea una referencia a la entrada del módulo:
-   ```ts
-    /** Zero Avatar Group */
-    export * from './lib/zero-avatar-group';
-   ```
+  ```ts
+  /** Zero Avatar Group */
+  export * from './lib/zero-avatar-group';
+  ```
   De esta manera, cuando se importe algún componente de este módulo desde fuera, quedarás así:
   ```ts
     /** Importar Zero Avatar Group */

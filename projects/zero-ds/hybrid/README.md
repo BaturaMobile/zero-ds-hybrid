@@ -1,23 +1,23 @@
-# Hybrid
+# ZeroDS - Hybrid
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.
 
 ## Code scaffolding
 
-Run `ng generate component component-name --project hybrid` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project hybrid`.
-> Note: Don't forget to add `--project hybrid` or else it will be added to the default project in your `angular.json` file. 
+Run `ng generate component component-name --project @zero-ds/hybrid` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project @zero-ds/hybrid`.
+> Note: Don't forget to add `--project @zero-ds/hybrid` or else it will be added to the default project in your `angular.json` file. 
 
 ## Build
 
-Run `ng build hybrid` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng build @zero-ds/hybrid` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Publishing
 
-After building your library with `ng build hybrid`, go to the dist folder `cd dist/hybrid` and run `npm publish`.
+After building your library with `ng build @zero-ds/hybrid`, go to the dist folder `cd dist/zero-ds/hybrid` and run `npm publish`.
 
 ## Running unit tests
 
-Run `ng test hybrid` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test @zero-ds/hybrid` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Further help
 
